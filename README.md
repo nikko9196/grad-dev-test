@@ -27,7 +27,7 @@ The shopping cart system supports the following features:
 - Run the development: `npm run dev`
 - Open the app in your browser: Eg. In this case, it can be `http://localhost:5173/`
 
-3. For the Back-End, in the terminal:
+3. For the Back-End, open another terminal:
 - Navigate to the server folder: `cd server`
 - Install dependencies: `npm install`
 - Run the server: `npm run dev`
@@ -36,3 +36,6 @@ The shopping cart system supports the following features:
 ## NOTE:
 - The app comes with mock product data.
 - If the server is unavailable or fails to respond, the app will display the mock data so you can still use the shopping cart features.
+
+---
+![alt text](<Screenshot of Simple Shopping Cart.png>)
