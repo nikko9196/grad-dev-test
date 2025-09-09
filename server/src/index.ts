@@ -9,10 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 const PRODUCTS: Product[] = [
-  { id: 1, name: "Coffee Beans 250g", price: 12.5 },
+  { id: 1, name: "Coffee Beans 250g", price: 12.50 },
   { id: 2, name: "Loose Leaf Tea 100g", price: 9.75 },
-  { id: 3, name: "Ceramic Mug", price: 14.0 },
-  { id: 4, name: "French Press", price: 29.9 },
+  { id: 3, name: "Ceramic Mug", price: 14.00 },
+  { id: 4, name: "French Press", price: 29.90 },
+  { id: 5, name: "Reusable Coffee Filter", price: 7.25 },
+  { id: 6, name: "Travel Tumbler", price: 18.00 },
 ];
 
 app.get("/api/products", (_req, res) => {
