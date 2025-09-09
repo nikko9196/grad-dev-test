@@ -5,18 +5,22 @@ import Products from "./components/Products";
 import Cart from "./components/Cart";
 import "./App.css";
 
+const mockData = [
+  { id: 1, name: "Burger", price: 5.50 },
+  { id: 2, name: "Pizza", price: 7.00 },
+  { id: 3, name: "Soda", price: 2.50 },
+];
+
 export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       // Fetch or mock products here
-      const mockData = [
-        { id: 1, name: "Burger", price: 5 },
-        { id: 2, name: "Pizza", price: 7 },
-        { id: 3, name: "Soda", price: 2 },
-      ];
-      dispatch(updateProducts(mockData));
+      fetch("http://localhost:4000/api/products")
+        .then((res) => res.json())
+        .then((data) => dispatch(updateProducts(data)))
+        .catch(() => dispatch(updateProducts(mockData)));
     })();
   }, []);
 
