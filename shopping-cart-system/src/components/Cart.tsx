@@ -8,50 +8,48 @@ export default function Cart() {
   const { addedItems } = useSelector((state: RootState) => state.cart);
   const [open, setOpen] = useState(false);
 
-  // Calculate total quantity of items in cart
   const totalItems = addedItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <section>
-      <div className="flex justify-end">
+      <div className="d-flex justify-content-end mb-4">
         <button
-          className="relative mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          className="btn btn-danger position-relative"
+          style={{ minWidth: "150px" }} // Add fixed width here
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? "Hide Cart " : "Show Cart "}
-          <span className="ml-2 inline-block bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
-            ({totalItems})
+          <span className="me-4">{open ? "Hide Cart" : "Show Cart"}</span>
+          <span className="badge bg-light text-danger position-absolute end-0 me-2 top-50 translate-middle-y">
+            {totalItems}
           </span>
         </button>
       </div>
       {open && (
         <>
-          <h2>Cart</h2>
+          <h2 className="h4">Cart</h2>
           {addedItems.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            <table className="cart-table w-full text-left">
+            <table className="table">
               <thead>
                 <tr>
-                  <th className="py-2 px-3">Item</th>
-                  <th className="py-2 px-3">Price</th>
-                  <th className="py-2 px-3">Quantity</th>
-                  <th className="py-2 px-3">Line Total</th>
-                  <th className="py-2 px-3"></th>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Line Total</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {addedItems.map(({ product, quantity }) => (
                   <tr key={product.id}>
-                    <td className="py-2 px-3">{product.name}</td>
-                    <td className="py-2 px-3">${product.price.toFixed(2)}</td>
-                    <td className="py-2 px-3">{quantity}</td>
-                    <td className="py-2 px-3">
-                      ${(product.price * quantity).toFixed(2)}
-                    </td>
-                    <td className="py-2 px-3">
+                    <td>{product.name}</td>
+                    <td>${product.price.toFixed(2)}</td>
+                    <td>{quantity}</td>
+                    <td>${(product.price * quantity).toFixed(2)}</td>
+                    <td>
                       <button
-                        className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                        className="btn btn-danger btn-sm"
                         onClick={() => dispatch(removeItem(product))}
                       >
                         Remove
@@ -62,10 +60,10 @@ export default function Cart() {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan={3} className="text-right font-bold py-2 px-3">
+                  <td colSpan={3} className="text-end fw-bold">
                     Total Price:
                   </td>
-                  <td colSpan={2} className="font-bold py-2 px-3">
+                  <td colSpan={2} className="fw-bold">
                     $
                     {addedItems
                       .reduce(

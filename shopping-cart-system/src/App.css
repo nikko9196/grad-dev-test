@@ -1,16 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-/* If you want to keep custom styles, you can add them below or convert them to Tailwind classes in your components. */
-/* Example: 
-.container { @apply max-w-[1000px] mx-auto my-8 px-4; }
-.grid { @apply grid grid-cols-2 gap-8; }
-.products { @apply list-none p-0 grid gap-3; }
-.product-card { @apply flex justify-between items-center p-3 border border-gray-300 rounded-lg; }
-.cart-table { @apply w-full border-collapse; }
-.cart-table th, .cart-table td { @apply border-b border-gray-200 p-2; }
-.actions { @apply mt-4 flex gap-4 items-center; }
-button { @apply px-3 py-2 border border-gray-300 rounded-md bg-gray-50 cursor-pointer; }
-button:disabled { @apply opacity-60 cursor-not-allowed; }
- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
