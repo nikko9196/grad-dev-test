@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "./store";
 import "./App.css";
 import type { Product, Cart } from "./types";
 import { updateProducts } from "./slices/productsSlice";
-import { addToCart } from "./slices/cartSlice";
+import { addToCart, removeItem } from "./slices/cartSlice";
 
 type CartState = Record<number, number>; // productId -> quantity
 
@@ -54,73 +54,60 @@ export default function App() {
           </ul>
         </section>
 
-        {/* <section>
-          <h2 className="italic">Cart</h2>
-          {cartItems.length === 0 ? (
-            <p>Your cart is empty.</p>
-          ) : (
-            <table className="cart-table">
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Price</th>
-                  <th style={{ width: 120 }}>Quantity</th>
-                  <th>Line Total</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {cartItems.map(({ product, quantity }) => (
-                  <tr key={product.id}>
-                    <td>{product.name}</td>
-                    <td>${product.price.toFixed(2)}</td>
-                    <td>
-                      <input
-                        type="number"
-                        min={0}
-                        value={quantity}
-                        onChange={(e) =>
-                          setQuantity(product.id, Number(e.target.value))
-                        }
-                        style={{ width: "100%" }}
-                      />
+        {
+          <section>
+            <h2 className="italic">Cart</h2>
+            {addedItems.length === 0 ? (
+              <p>Your cart is empty.</p>
+            ) : (
+              <table className="cart-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th style={{ width: 120 }}>Quantity</th>
+                    <th>Line Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {addedItems.map(({ product, quantity }) => (
+                    <tr key={product.id}>
+                      <td>{product.name}</td>
+                      <td>${product.price.toFixed(2)}</td>
+                      <td>{quantity}</td>
+                      <td>${(product.price * quantity).toFixed(2)}</td>
+                      <td>
+                        <button onClick={() => dispatch(removeItem(product))}>
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan={3} style={{ textAlign: "right" }}>
+                      <strong>Client Total:</strong>
                     </td>
-                    <td>${(product.price * quantity).toFixed(2)}</td>
-                    <td>
-                      <button onClick={() => removeItem(product.id)}>
-                        Remove
-                      </button>
+                    <td colSpan={2}>
+                      <strong>
+                        $
+                        {addedItems
+                          .reduce(
+                            (sum, { product, quantity }) =>
+                              sum + product.price * quantity,
+                            0
+                          )
+                          .toFixed(2)}
+                      </strong>
                     </td>
                   </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan={3} style={{ textAlign: "right" }}>
-                    <strong>Client Total:</strong>
-                  </td>
-                  <td colSpan={2}>
-                    <strong>${clientTotal.toFixed(2)}</strong>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          )}
-
-          <div className="actions">
-            <button
-              disabled={cartItems.length === 0 || loadingTotal}
-              onClick={fetchServerTotal}
-            >
-              {loadingTotal ? "Calculating…" : "Verify total (server)"}
-            </button>
-            {serverTotal !== null && (
-              <span>
-                Server says: <strong>${serverTotal.toFixed(2)}</strong>
-              </span>
+                </tfoot>
+              </table>
             )}
-          </div>
-        </section> */}
+          </section>
+        }
       </div>
     </div>
   );
