@@ -1,42 +1,16 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+/* If you want to keep custom styles, you can add them below or convert them to Tailwind classes in your components. */
+/* Example: 
+.container { @apply max-w-[1000px] mx-auto my-8 px-4; }
+.grid { @apply grid grid-cols-2 gap-8; }
+.products { @apply list-none p-0 grid gap-3; }
+.product-card { @apply flex justify-between items-center p-3 border border-gray-300 rounded-lg; }
+.cart-table { @apply w-full border-collapse; }
+.cart-table th, .cart-table td { @apply border-b border-gray-200 p-2; }
+.actions { @apply mt-4 flex gap-4 items-center; }
+button { @apply px-3 py-2 border border-gray-300 rounded-md bg-gray-50 cursor-pointer; }
+button:disabled { @apply opacity-60 cursor-not-allowed; }
+ */
