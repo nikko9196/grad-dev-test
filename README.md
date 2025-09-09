@@ -5,7 +5,7 @@ This project is a basic shopping cart system for an E-commerce platform.
 The goal is to demonstrate how to build a simple front end and back end that allow users to browse products, add them to a cart, and calculate totals.
 
 The app includes:
-- A front end built with React + Redux.
+- A front end built with React + Redux, and Bootstrap for CSS styling.
 - A simple back end (Node.js + Express) that serves product data.
 - Fallback mock data, so the app still works if the server is not running.
 
